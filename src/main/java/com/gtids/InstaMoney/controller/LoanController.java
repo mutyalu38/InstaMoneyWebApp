@@ -18,7 +18,7 @@ public class LoanController {
 
 	@RequestMapping(value = "loanDataByCurrentDate", method = RequestMethod.GET)
 	public List<Loans> loanDataByCurrentDate() {
-		System.out.println("current  >>>" + loansRepository.findCurrentDateLoanApp());
+		//System.out.println("current  >>>>" + loansRepository.findCurrentDateLoanApp());
 		return loansRepository.findCurrentDateLoanApp();
 
 	}
