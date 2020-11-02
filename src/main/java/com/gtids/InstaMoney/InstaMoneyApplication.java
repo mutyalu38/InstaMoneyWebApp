@@ -26,7 +26,7 @@ public class InstaMoneyApplication implements CommandLineRunner{
 		// Testing purpose to verify in startup 
 		
 		String password = "Test@123";
-		System.out.println(">>>>"+encoder().encode(password));
+		//System.out.println(">>>>"+encoder().encode(password));
 		
 		BCrypt bCrypt = new BCrypt();
 		

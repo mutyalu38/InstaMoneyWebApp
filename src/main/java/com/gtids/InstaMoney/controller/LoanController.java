@@ -43,5 +43,31 @@ public class LoanController {
 	public Integer getLoanDataByLastSevanDaysCount() {
 		return loansRepository.findSevenDaysLoanAppCount();
 	}
+	
+//	@RequestMapping(value = "loanDataByTopSevenNearestAPGVBBank", method = RequestMethod.GET)
+//	public List<Loans> getTopSevenNearestAPGVBBank() {
+//		System.out.println("sevendays" + loansRepository.findTopSevenNearestAPGVBBank());
+//		return loansRepository.findTopSevenNearestAPGVBBank();
+//
+//	}
+//	@RequestMapping(value = "loanDataByAllNearestAPGVBBank", method = RequestMethod.GET)
+//	public List<Loans> getAllNearestAPGVBBank() {
+//		System.out.println("sevendays" + loansRepository.findAllNearestAPGVBBank());
+//		return loansRepository.findAllNearestAPGVBBank();
+//
+//	}
+//	
+//	@RequestMapping(value = "loanDataByTopSevenCustomerOccupation", method = RequestMethod.GET)
+//	public List<Loans> getTopSevenCustomerOccupation() {
+//		System.out.println("sevendays" + loansRepository.findTopSevenCustomerOccupation());
+//		return loansRepository.findTopSevenCustomerOccupation();
+//
+//	}
+//	@RequestMapping(value = "loanDataByAllCustomerOccupation", method = RequestMethod.GET)
+//	public List<Loans> getAllCustomerOccupation() {
+//		System.out.println("sevendays" + loansRepository.findAllCustomerOccupation());
+//		return loansRepository.findAllCustomerOccupation();
+//
+//	}
 
 }
