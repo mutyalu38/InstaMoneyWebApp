@@ -2,19 +2,31 @@ package com.gtids.InstaMoney.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gtids.InstaMoney.model.Loans;
+import com.gtids.InstaMoney.model.LoansDTO;
+import com.gtids.InstaMoney.repository.LoansDTORepository;
 import com.gtids.InstaMoney.repository.LoansRepository;
 
 @RequestMapping("/rest")
 @RestController
 public class LoanController {
+	
+	private static final Logger logger = LogManager.getLogger(LoanController.class);
+	
 	@Autowired
 	private LoansRepository loansRepository;
+	
+	@Autowired
+	private LoansDTORepository loansDTORepository;
+	
+	
 
 	@RequestMapping(value = "loanDataByCurrentDate", method = RequestMethod.GET)
 	public List<Loans> loanDataByCurrentDate() {
@@ -40,34 +52,26 @@ public class LoanController {
 		return loansRepository.findCurrentDateLoanAppCount();
 	}
 	@RequestMapping(value = "loanDataByLastSevanDaysCount", method = RequestMethod.GET)
-	public Integer getLoanDataByLastSevanDaysCount() {
-		return loansRepository.findSevenDaysLoanAppCount();
+	public int getLoanDataByLastSevanDaysCount() {
+		int count = loansRepository.findSevenDaysLoanAppCount();
+		 logger.debug("getLoanDataByLastSevanDaysCount from Log4j 2 - num : {}",count);
+		 System.out.println(logger.isDebugEnabled());
+		return count;
 	}
 	
-//	@RequestMapping(value = "loanDataByTopSevenNearestAPGVBBank", method = RequestMethod.GET)
-//	public List<Loans> getTopSevenNearestAPGVBBank() {
+	@RequestMapping(value = "loanDataByTopSevenAPGVBBank", method = RequestMethod.GET)
+	public List<LoansDTO> getTopSevenNearestAPGVBBank() {
 //		System.out.println("sevendays" + loansRepository.findTopSevenNearestAPGVBBank());
-//		return loansRepository.findTopSevenNearestAPGVBBank();
-//
-//	}
-//	@RequestMapping(value = "loanDataByAllNearestAPGVBBank", method = RequestMethod.GET)
-//	public List<Loans> getAllNearestAPGVBBank() {
-//		System.out.println("sevendays" + loansRepository.findAllNearestAPGVBBank());
-//		return loansRepository.findAllNearestAPGVBBank();
-//
-//	}
-//	
-//	@RequestMapping(value = "loanDataByTopSevenCustomerOccupation", method = RequestMethod.GET)
-//	public List<Loans> getTopSevenCustomerOccupation() {
-//		System.out.println("sevendays" + loansRepository.findTopSevenCustomerOccupation());
-//		return loansRepository.findTopSevenCustomerOccupation();
-//
-//	}
-//	@RequestMapping(value = "loanDataByAllCustomerOccupation", method = RequestMethod.GET)
-//	public List<Loans> getAllCustomerOccupation() {
-//		System.out.println("sevendays" + loansRepository.findAllCustomerOccupation());
-//		return loansRepository.findAllCustomerOccupation();
-//
-//	}
+		return loansDTORepository.findTopSevenNearestAPGVBBank();
+
+	}
+	
+	@RequestMapping(value = "loanDataByAllNearestAPGVBBank", method = RequestMethod.GET)
+	public List<LoansDTO> getAllNearestAPGVBBank() {
+
+		return loansDTORepository.findAllNearestAPGVBBank();
+
+	}
+
 
 }
