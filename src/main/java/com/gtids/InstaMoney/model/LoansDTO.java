@@ -1,5 +1,7 @@
 package com.gtids.InstaMoney.model;
 
+//import com.fasterxml.jackson.annotation.JsonInclude;
+
 public interface LoansDTO {
 
 
