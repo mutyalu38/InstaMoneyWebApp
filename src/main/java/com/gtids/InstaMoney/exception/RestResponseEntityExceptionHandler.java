@@ -3,9 +3,9 @@ package com.gtids.InstaMoney.exception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
@@ -20,13 +20,21 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		return new ResponseEntity<ErrorDetails>(error, HttpStatus.OK);
 	}
 	
-	@ExceptionHandler(CustomException.class)
+	/*@ExceptionHandler(CustomException.class)
 	public ResponseEntity<ErrorDetails> UserCustomExceptionHandler(Exception ex) {
 		ErrorDetails error = new ErrorDetails();
 		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		error.setMessage(ex.getMessage());
 		return new ResponseEntity<ErrorDetails>(error, HttpStatus.OK);
-	}
+	}*/
+
 	
+	@ExceptionHandler(HttpStatusCodeException.class)
+	public ResponseEntity<ErrorDetails> handleHttpStatusCodeExceptionHandler(Exception ex) {
+		ErrorDetails error = new ErrorDetails();
+		error.setErrorCode(HttpStatus.INTERNAL_SERVER_ERROR.value());
+		error.setMessage(ex.getMessage());
+		return new ResponseEntity<ErrorDetails>(error, HttpStatus.OK);
+	}
 	
 }

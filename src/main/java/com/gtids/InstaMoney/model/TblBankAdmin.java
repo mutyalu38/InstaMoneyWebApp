@@ -1,8 +1,8 @@
 package com.gtids.InstaMoney.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +13,13 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "tblbankadmin")
-public class TblBankAdmin {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class TblBankAdmin implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;

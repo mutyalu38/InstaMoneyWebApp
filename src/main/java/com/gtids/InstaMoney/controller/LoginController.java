@@ -26,6 +26,7 @@ import com.gtids.InstaMoney.repository.TblBankAdminRepository;
 
 
 @RequestMapping("/rest")
+//@CrossOrigin(origins = {"http://localhost"})
 @RestController
 public class LoginController {
 
@@ -34,6 +35,8 @@ public class LoginController {
 	private TblBankAdminRepository tblBankAdminRepository;
 
 	private List<TblBankAdmin> tblBankAdminList = new ArrayList<TblBankAdmin>();
+	
+	
 
 	@RequestMapping(value = "testJson",method = RequestMethod.GET)
 	public TblBankAdmin testJson() {
@@ -44,8 +47,8 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "isValidUser",method = RequestMethod.GET)
-	public TblBankAdmin isValidUser(@Valid @RequestBody TblBankAdmin tableBankAdmin) throws UserNotFoundException,CustomException{
+	@RequestMapping(value = "isValidUser",method = RequestMethod.POST)
+	public ResponseEntity<TblBankAdmin> isValidUser(@Valid @RequestBody TblBankAdmin tableBankAdmin) throws UserNotFoundException,CustomException{
 		System.out.println("Calling IsValidUser"+tableBankAdmin);
 		String userName = tableBankAdmin.getUserName();
 		String password = tableBankAdmin.getPassword();
@@ -56,8 +59,10 @@ public class LoginController {
 			if(!result) {
 				throw new CustomException("You Entered Wrong Password..!");
 			}
+			ResponseEntity<TblBankAdmin> responseEntity = ResponseEntity.ok().body(dataResult);
+			
 			//OTP 
-			return dataResult;
+			return responseEntity;
 		}else {
 			throw new UserNotFoundException("User not Registered with us ..!");
 		}

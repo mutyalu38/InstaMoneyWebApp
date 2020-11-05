@@ -11,7 +11,13 @@ public class ErrorDetails {
 	private Date timestamp;
 	private int errorCode;
 	private String message;
+	private String path;
 	private String description;
+	
+	private String trace;
+	private int status;
+	private String error;
+	
 	public ErrorDetails() {
 	}
 
@@ -68,4 +74,46 @@ public class ErrorDetails {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTrace() {
+		return trace;
+	}
+
+	public void setTrace(String trace) {
+		this.trace = trace;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getError() {
+		return error;
+	}
+
+	public void setError(String error) {
+		this.error = error;
+	}
+	
+	
 }
