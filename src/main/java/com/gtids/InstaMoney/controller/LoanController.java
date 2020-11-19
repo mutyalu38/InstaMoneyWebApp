@@ -47,6 +47,11 @@ public class LoanController {
 	public List<Loans> getTotalLoanData() {
 		return loansRepository.findAll();
 	}
+	
+	@RequestMapping(value = "totalLoansCount", method = RequestMethod.GET)
+	public Long getTotalLoansCount() {
+		return loansRepository.count();
+	}
 
 	@RequestMapping(value = "loanDataByCurrentDateCount", method = RequestMethod.GET)
 	public Integer getLoanDataByCurrentDateCount() {

@@ -39,7 +39,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
           <div class="col-xl-4 col-lg-6 col-12">
             <div class="card pull-up">
               <div class="card-content">
-                   <a href="/todayLoanDetails">
+                   <a href="/onboard">
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">

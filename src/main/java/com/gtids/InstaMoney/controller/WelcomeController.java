@@ -32,6 +32,8 @@ import com.gtids.InstaMoney.model.Loans;
 import com.gtids.InstaMoney.model.TblBankAdmin;
 import com.gtids.InstaMoney.repository.LoansRepository;
 
+import sun.misc.BASE64Encoder;
+
 @Controller
 public class WelcomeController {
 	
@@ -99,6 +101,19 @@ public class WelcomeController {
 		return "todayLoanDetails";
 	}
 	
+	@RequestMapping(value="/onboard",method = RequestMethod.GET)
+	public String onboard(Model model) {
+		//set Model 
+		System.out.println("Calling............todayLoanDetails()");
+		
+		//List<Loans> loans= loansRepository.findCurrentDateWithBranchLoanApps();
+		
+		//model.addAttribute("resultList", loans);
+		
+		return "onboard";
+	}
+	
+	
 	
 	
 	
@@ -106,7 +121,15 @@ public class WelcomeController {
 	public String login(Model model,TblBankAdmin tblBankAdmin,HttpSession session,HttpServletRequest request) throws MalformedURLException {
 		HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        
         //headers.set("Content-Type", "application/json");
+        
+        String name = "user1";
+        String password = "user1Pass";
+        String authString = name + ":" + password;
+        String authStringEnc = new BASE64Encoder().encode(authString.getBytes());
+        System.out.println("Base64 encoded auth string: " + authStringEnc);
+        headers.setBasicAuth(name,password);
 
         HttpEntity<TblBankAdmin> requestEntity = new HttpEntity<>(tblBankAdmin, headers);
         
